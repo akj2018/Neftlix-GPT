@@ -1,6 +1,55 @@
 # Neftlix-GPT
 
-# Getting Started with Create React App
+## Requirements Clarification
+
+# Features
+
+1. (Home Page - Before sign in)
+
+   - netflix.com
+
+2. (Login/Sign In Page - On Sign in click)
+
+   - netflix.com/login
+   - Sign In Form
+   - Without login - Redirect to sign in Page
+
+3. (Browse Page - Only After Sign in Auth)
+
+   - nextflix.com/browse
+   - Without login - Redirect to sign in Page
+
+   - Header
+
+     - Initially transparent, on scrolling down black bg
+     - Netflix Logo (Left)
+     - Home, TV Shows, Movies, New & Popular, My List, Browser by language
+
+   - Main Movie
+
+     - Trailer auto-plays in background
+     - Movie name, description,
+     - Play and More Info Button on left
+     - replay trailer, and TV-14 on right
+     - Fade effect on bottom edge
+
+   - Movie Categories Body
+     - Category Rows (Multiple)
+     - Category Name (hover : more white, arrow “Explore All” animation)
+   - Movie Lists
+     - Horizontal Carousel with Movie Card
+     - on hover : expand card, plays trailer + info
+     - 3 Types of Movie Card:
+       - Normal Card,
+       - Exclusive on Netflix (Top Left symbol)
+       - Top 10 in category (Top Right symbol)
+   - Infinite Scroll with new sub categories
+
+4. (Netflix GPT Page - Only After Sign in Auth)
+   - Search Bar
+   - Provide Movie Suggestions
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
