@@ -1,7 +1,7 @@
 # Neftlix-GPT
 
-[x] create-react-app
-[x] installed tailwindCSS
+- [x] create-react-app
+- [x] installed tailwindCSS
 
 ## Requirements Clarification
 
