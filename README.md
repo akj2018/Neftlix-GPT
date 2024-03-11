@@ -1,8 +1,11 @@
 # Neftlix-GPT
 
+[x] create-react-app
+[x] installed tailwindCSS
+
 ## Requirements Clarification
 
-# Features
+### Features
 
 1. (Home Page - Before sign in)
 
