@@ -37,10 +37,11 @@ const SignInForm = () => {
       password.current.style.borderBottomWidth = "0px";
     }
 
-    if (isFullnameValid !== null) {
+    if (fullName.current !== null && isFullnameValid !== null) {
+      console.log(fullName);
       fullName.current.style.borderBottomWidth = "2px";
       fullName.current.style.borderBottomColor = "#e87c03";
-    } else {
+    } else if (fullName.current !== null) {
       fullName.current.style.borderBottomWidth = "0px";
     }
     setEmailValidMsg(isEmailValid);
@@ -49,8 +50,8 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="mx-auto flex flex-col md:h-screen md:w-3/5 lg:w-[45%] lg:h-[75vh]">
-      <div className="body border-b-[1px] border-neutral-500 md:border-none min-h-[550px] pt-2 pb-8 sm:pb-0 px-[5%] md:bg-[#000000c0] md:px-[15%] md:pt-[15%] md:pb-[5%] lg:pb-[25%]">
+    <div className="mx-auto flex flex-col md:h-screen md:w-3/5 lg:max-w-[450px] lg:max-h-[82vh]">
+      <div className="body border-b-[1px] border-neutral-500 md:border-none min-h-[550px] pt-2 pb-8 sm:pb-0 px-[5%] md:bg-[#000000c0] md:px-[15%] md:pt-[15%] md:pb-[5%] lg:pb-[5rem] rounded-[4px] mb-10">
         <form
           onSubmit={(e) => e.preventDefault()}
           className="main flex flex-col"

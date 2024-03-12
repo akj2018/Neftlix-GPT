@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="w-full p-2 sm:p-0 relative">
+    <div className="w-full px-[2%] relative">
       <img
         className="w-24 sm:w-52 contrast-150"
         alt="logo"
