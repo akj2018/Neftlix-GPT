@@ -1,7 +1,14 @@
 # Neftlix-GPT
 
 - [x] create-react-app
-- [x] installed tailwindCSS
+- [x] Configured TailwindCSS
+- [x] Routing (Login, Browse, Home)
+- [x] Designing Login Page
+- [x] Header
+- [x] Sign In / Sign Up Form
+- [x] Footer
+- [x] Form Validation
+- [x] useRef Hook
 
 ## Requirements Clarification
 

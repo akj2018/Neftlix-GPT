@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="footer py-4 px-[5%] pt-6 pb-8 md:bg-[#000000bb]">
+    <div className="footer py-4 px-[5%] pt-6 pb-8 md:bg-[#000000c7]">
       <p className="text-neutral-500">Questions? Call x-xxx-xxx-xxxx</p>
       <div className="text-sm grid grid-cols-footer gap-4 my-6">
         <span className="text-neutral-500">FAQ</span>
