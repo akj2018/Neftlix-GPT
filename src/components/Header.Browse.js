@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const HeaderBrowse = () => {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [activeLinkIndex, setActiveLinkIndex] = useState(1);
   const navigate = useNavigate();
+  const photoURL = useSelector((state) => state?.user?.photoURL);
 
   const navMenu = [
     { name: "Home", index: 1 },
@@ -36,7 +38,6 @@ const HeaderBrowse = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        console.log("Sign Out User");
         navigate("/");
       })
       .catch((error) => {
@@ -101,9 +102,13 @@ const HeaderBrowse = () => {
           <MdNotificationsNone className="text-white" size={"1.75rem"} />
           <div className="group flex items-center gap-x-1 relative">
             <img
-              className="rounded-md cursor-pointer"
+              className="rounded-md cursor-pointer w-10"
               alt="profile-icon"
-              src="https://occ-0-37-3996.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
+              src={
+                photoURL !== null || photoURL !== undefined
+                  ? photoURL
+                  : "https://occ-0-37-3996.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
+              }
             />
             <span className="cursor-pointer">
               <FaCaretDown className="text-white hidden sm:block group-hover:rotate-180 transition duration-500" />

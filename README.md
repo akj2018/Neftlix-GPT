@@ -16,6 +16,7 @@
 - [x] Setup Redux Store with userSlice
 - [x] Update userSlice with info on Sign In/Sign Up/Sign Out
 - [x] Redirect to /browse on Successful Sign In/Sign Up
+- [x] Update display name after sign up and in the store
 
 ## Requirements Clarification
 
