@@ -24,7 +24,7 @@ const passwordValidate = (password) => {
   }
 
   // Check for at least one digit and one letter
-  const requiredChars = /^(?=.+\d)(?=.+[A-Za-z])$/;
+  const requiredChars = /^(?=.*\d)(?=.*[A-Za-z]).{4,}$/;
   if (!requiredChars.test(password)) {
     return "Password must contain atleat one digit and one letter.";
   }

@@ -9,6 +9,13 @@
 - [x] Footer
 - [x] Form Validation
 - [x] useRef Hook
+- [x] Firebase Setup
+- [x] Deploy on Firebase
+- [x] Create a user account on Firebase
+- [x] Perform user sign in / sign up with Firebase
+- [x] Setup Redux Store with userSlice
+- [x] Update userSlice with info on Sign In/Sign Up/Sign Out
+- [x] Redirect to /browse on Successful Sign In/Sign Up
 
 ## Requirements Clarification
 

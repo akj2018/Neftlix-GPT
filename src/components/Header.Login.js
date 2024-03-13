@@ -1,4 +1,4 @@
-const Header = () => {
+const HeaderLogin = () => {
   return (
     <div className="w-full px-[2%] relative">
       <img
@@ -11,4 +11,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderLogin;

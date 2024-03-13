@@ -2,8 +2,16 @@ import { useRef, useState } from "react";
 import emailValidate from "../utils/emailValidate";
 import passwordValidate from "../utils/passwordValidate";
 import fullnameValidate from "../utils/fullnameValidate";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "@firebase/auth";
+import { useNavigate } from "react-router";
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailValidMsg, setEmailValidMsg] = useState(null);
   const [passwordValidMsg, setPasswordValidMsg] = useState(null);
@@ -13,16 +21,23 @@ const SignInForm = () => {
   const email = useRef(null);
   const password = useRef(null);
 
+  const clearErrorMessages = () => {
+    setEmailValidMsg(null);
+    setPasswordValidMsg(null);
+    setFullnameValidMsg(null);
+  };
+
   const toggleSignIn = () => {
     setIsSignIn(!isSignIn);
+    clearErrorMessages();
   };
 
   const btnHandler = () => {
     const isEmailValid = emailValidate(email?.current?.value);
     const isPasswordValid = passwordValidate(password?.current?.value);
-    const isFullnameValid = fullnameValidate(fullName?.current?.value);
-    console.log(password.current.value);
-    console.log(isPasswordValid);
+    let isFullnameValid = null;
+
+    // Chnage UI depending upon Error
     if (isEmailValid !== null) {
       email.current.style.borderBottomWidth = "2px";
       email.current.style.borderBottomColor = "#e87c03";
@@ -37,20 +52,75 @@ const SignInForm = () => {
       password.current.style.borderBottomWidth = "0px";
     }
 
-    if (fullName.current !== null && isFullnameValid !== null) {
-      console.log(fullName);
-      fullName.current.style.borderBottomWidth = "2px";
-      fullName.current.style.borderBottomColor = "#e87c03";
-    } else if (fullName.current !== null) {
-      fullName.current.style.borderBottomWidth = "0px";
-    }
     setEmailValidMsg(isEmailValid);
     setPasswordValidMsg(isPasswordValid);
-    setFullnameValidMsg(isFullnameValid);
+
+    if (!isSignIn) {
+      isFullnameValid = fullnameValidate(fullName?.current?.value);
+      setFullnameValidMsg(isFullnameValid);
+      if (isFullnameValid !== null) {
+        fullName.current.style.borderBottomWidth = "2px";
+        fullName.current.style.borderBottomColor = "#e87c03";
+      } else {
+        fullName.current.style.borderBottomWidth = "0px";
+      }
+    }
+
+    // If all the field values are null, do auth else return
+    const fieldValues = [isEmailValid, isPasswordValid, isFullnameValid];
+
+    const everyFieldValid = fieldValues.every((element) => element === null);
+    if (!everyFieldValid) return;
+
+    // Sign in / Sign Up user
+    if (!isSignIn) {
+      // Sign Up new user
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode === "auth/email-already-in-use") {
+            setEmailValidMsg("Email already registered. Try Sign In");
+          } else {
+            setEmailValidMsg(errorCode + " " + errorMessage);
+          }
+        });
+    } else {
+      // Sign in exisiting user
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode === "auth/invalid-credential") {
+            setPasswordValidMsg("Invalid Email ID or password. Retry");
+          } else {
+            setEmailValidMsg(errorCode + " " + errorMessage);
+          }
+        });
+    }
   };
 
   return (
-    <div className="mx-auto flex flex-col md:h-screen md:w-3/5 lg:max-w-[450px] lg:max-h-[82vh]">
+    <div className="mx-auto flex flex-col md:h-screen md:w-3/5 lg:max-w-[450px] ">
       <div className="body border-b-[1px] border-neutral-500 md:border-none min-h-[550px] pt-2 pb-8 sm:pb-0 px-[5%] md:bg-[#000000c0] md:px-[15%] md:pt-[15%] md:pb-[5%] lg:pb-[5rem] rounded-[4px] mb-10">
         <form
           onSubmit={(e) => e.preventDefault()}
