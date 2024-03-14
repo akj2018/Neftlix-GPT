@@ -3,9 +3,10 @@ import { IoSearch } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import { NETFLIX_LOGO_URL, USER_ICON_URL } from "../../utils/constants";
 
 const HeaderBrowse = () => {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
@@ -59,7 +60,7 @@ const HeaderBrowse = () => {
   return (
     <div
       className={
-        "w-full px-[3%] py-1 fixed top-0 transition-[background-color] ease-out duration-1000 sm:py-2" +
+        "w-full px-[3%] py-1 fixed top-0 transition-[background-color] ease-out duration-1000 sm:py-2 z-10 " +
         (navbarScrolled ? " bg-black" : "")
       }
     >
@@ -68,7 +69,7 @@ const HeaderBrowse = () => {
         <img
           className="w-16 sm:w-32 contrast-150 justify-self-start"
           alt="logo"
-          src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+          src={NETFLIX_LOGO_URL}
         />
         <div className="text-[0.5rem] font-bold text-white mx-3 flex-1 sm:hidden">
           <span>Browse</span>
@@ -102,13 +103,9 @@ const HeaderBrowse = () => {
           <MdNotificationsNone className="text-white" size={"1.75rem"} />
           <div className="group flex items-center gap-x-1 relative">
             <img
-              className="rounded-md cursor-pointer w-10"
+              className="rounded-md cursor-pointer w-8 sm:w-10 lg:w-9"
               alt="profile-icon"
-              src={
-                photoURL !== null || photoURL !== undefined
-                  ? photoURL
-                  : "https://occ-0-37-3996.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
-              }
+              src={photoURL === null ? USER_ICON_URL : photoURL}
             />
             <span className="cursor-pointer">
               <FaCaretDown className="text-white hidden sm:block group-hover:rotate-180 transition duration-500" />

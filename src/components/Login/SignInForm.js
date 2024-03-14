@@ -1,19 +1,17 @@
 import { useRef, useState } from "react";
-import emailValidate from "../utils/emailValidate";
-import passwordValidate from "../utils/passwordValidate";
-import fullnameValidate from "../utils/fullnameValidate";
-import { auth } from "../utils/firebase";
+import emailValidate from "../../utils/emailValidate";
+import passwordValidate from "../../utils/passwordValidate";
+import fullnameValidate from "../../utils/fullnameValidate";
+import { auth } from "../../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "@firebase/auth";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser } from "../../utils/userSlice";
 
 const SignInForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isSignIn, setIsSignIn] = useState(true);
@@ -97,7 +95,6 @@ const SignInForm = () => {
               // Update Store (because it does not contain updated displayName and photoURL) and navigate
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName, photoURL }));
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -124,7 +121,6 @@ const SignInForm = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;

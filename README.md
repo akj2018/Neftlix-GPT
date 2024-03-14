@@ -12,11 +12,23 @@
 - [x] Firebase Setup
 - [x] Deploy on Firebase
 - [x] Create a user account on Firebase
-- [x] Perform user sign in / sign up with Firebase
+- [x] Perform user sign in and sign up with Firebase
 - [x] Setup Redux Store with userSlice
 - [x] Update userSlice with info on Sign In/Sign Up/Sign Out
 - [x] Redirect to /browse on Successful Sign In/Sign Up
-- [x] Update display name after sign up and in the store
+- [x] Implement Sign Out , Redirect to "/login" and update userSlice to null
+- [x] Update display name after sign up and update userSlice state
+- [x] Unsubsribed to onAuthStateChnaged callback
+- [x] Add hardcoded string values to contants.js
+- [x] BugFix : Redirect to "/login" if user not signed in, Redirect to "/browse" if user signed in and trying to go "/login"
+
+- [x] Designing Browse Page (main container + secondary container)
+- [x] Fetch API Key and API Read Access Token from [TMDB Movies API](https://developer.themoviedb.org/reference/intro/getting-started)
+- [x] Get nowPlayingMovies data using TMDB nowPlayingMovies API
+- [x] Converted nowPlayingMovies data into a custom hook
+- [x] Create moviesSlice and update store with movies data
+- [x] Fetch data for Trailer video and update store
+- [x] Embedded Youtube Video link and make it autoplay, mute, loop, minimal branding
 
 ## Requirements Clarification
 
