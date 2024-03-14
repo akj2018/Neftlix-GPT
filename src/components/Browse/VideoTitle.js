@@ -6,6 +6,7 @@ const VideoTitle = ({ title, overview }) => {
   const overviewRef = useRef(null);
   const titleRef = useRef(null);
 
+  // Transition and Fade effect for video title and overview
   useEffect(() => {
     const containerHeight = titleRef?.current?.parentElement?.clientHeight;
     const titleHeight = titleRef?.current?.clientHeight;
@@ -20,8 +21,9 @@ const VideoTitle = ({ title, overview }) => {
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   });
 
+  // use the props (title, overview) and render background movie info
   return (
-    <div className="w-2/4 lg:w-4/12 z-[1] ">
+    <div className="w-2/4 lg:w-[35%] z-[1] ">
       <div className="flex flex-col gap-y-2 lg:gap-y-6">
         <p
           ref={titleRef}
@@ -42,7 +44,7 @@ const VideoTitle = ({ title, overview }) => {
           <FaPlay className="text-black size-3 lg:size-7" />
           <span> Play</span>
         </button>
-        <button className="text-[0.65rem] font-bold bg-[#7d7d7da2] text-neutral-100 px-3 py-1 rounded-[4px] flex items-center gap-x-1 hover:bg-[#7d7d7d69] lg:gap-x-2 lg:text-lg lg:px-6 lg:py-2">
+        <button className="min-w-5 text-[0.65rem] font-bold bg-[#7d7d7da2] text-neutral-100 px-3 py-1 rounded-[4px] flex items-center gap-x-1 hover:bg-[#7d7d7d69] lg:gap-x-2 lg:text-lg lg:px-6 lg:py-2">
           <IoIosInformationCircleOutline className="text-neutral-100 size-4 lg:size-[2rem]" />
           <span>More Info</span>
         </button>
