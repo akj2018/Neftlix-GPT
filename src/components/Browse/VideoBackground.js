@@ -8,14 +8,9 @@ const VideoBackground = ({ movieId }) => {
   // Get the movie trailer object from custom hook for a particular movie id
   const movieTrailer = useMovieTrailer(movieId);
 
-  // Store the object in redux store
-  if (movieTrailer !== null) {
-    dispatch(addTrailerVideo(movieTrailer));
-  }
-
   if (!movieTrailer) return null;
 
-  // use the key to render the embedded YT video
+  // use the key from movieTrailer object to render the embedded YT video (mute, autoplay, no controls, modestBranding, loop)
   return (
     <div className="absolute top-[-8vh] bottom-0 -left-[10vw] right-0 pointer-events-none overflow-hidden md:top-[-30vh]  ">
       <iframe

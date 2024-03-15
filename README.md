@@ -29,6 +29,10 @@
 - [x] Create moviesSlice and update store with movies data
 - [x] Fetch data for Trailer video and update store
 - [x] Embedded Youtube Video link and make it autoplay, mute, loop, minimal branding
+- [x] Build the Secondary Container (Movie Lists, Movie Cards)
+- [x] Add CDN URL Link to fetch images
+- [x] Designed Custom Hooks (useTopRatedMovies, usePopularMovies, useUpcomingMovies) and updated redux Store
+- [x] Subscribe to store and rendered Movie Lists with Movie Cards and Title, TailwindCSS for UI
 
 ## Requirements Clarification
 

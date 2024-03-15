@@ -60,7 +60,7 @@ const HeaderBrowse = () => {
   return (
     <div
       className={
-        "w-full px-[3%] py-1 fixed top-0 transition-[background-color] ease-out duration-1000 sm:py-2 z-10 " +
+        "w-full px-[3%] py-1 fixed top-0 transition-[background-color] ease-out duration-1000 sm:py-2 z-50 " +
         (navbarScrolled ? " bg-black" : "")
       }
     >

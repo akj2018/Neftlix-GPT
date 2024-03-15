@@ -3,6 +3,7 @@ import { FaPlay } from "react-icons/fa6";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 
 const VideoTitle = ({ title, overview }) => {
+  // Store reference title and overview
   const overviewRef = useRef(null);
   const titleRef = useRef(null);
 

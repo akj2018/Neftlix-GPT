@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 
 const useMovieTrailer = (movieId) => {
   const [trailer, setTrailer] = useState(null);
+  const dispatch = useDispatch();
 
   const getMovieTrailer = useCallback(async () => {
+    // Fetch the Now Playing
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
       API_GET_OPTIONS
@@ -17,6 +19,7 @@ const useMovieTrailer = (movieId) => {
     );
     const trailer =
       availTrailers.length === 0 ? json.results[0] : availTrailers[0];
+    dispatch(trailer);
     setTrailer(trailer);
   }, [movieId]);
 

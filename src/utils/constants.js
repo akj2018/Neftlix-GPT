@@ -12,6 +12,15 @@ export const TMDB_READ_ACCESS_TOKEN =
 export const NOW_PLAYING_MOVIES_URL =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
+export const POPULAR_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+
+export const TOP_RATED_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+
+export const UPCOMING_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
+
 export const API_GET_OPTIONS = {
   method: "GET",
   headers: {
@@ -20,3 +29,5 @@ export const API_GET_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ODM4YmVmMDBmMWZhYjMzNjRhM2E5NWUwMTFlY2Y2OCIsInN1YiI6IjY0ZjBmNTViMzUwMzk4MDEzY2MyMWQyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.989q1TEroAl6LdFyL_mgrMpy5NXkG8JByvbcPAkzt9E",
   },
 };
+
+export const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w500";
