@@ -84,7 +84,6 @@ const SignInForm = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
 
           updateProfile(auth.currentUser, {
             displayName: fullName.current.value,
@@ -120,7 +119,6 @@ const SignInForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;

@@ -5,7 +5,7 @@ import SignInForm from "../components/Login/SignInForm";
 import useAuthStateChange from "../hooks/useAuthStateChange";
 
 const LoginPage = () => {
-  useAuthStateChange();
+  useAuthStateChange("/browse");
 
   return (
     <div className="relative">

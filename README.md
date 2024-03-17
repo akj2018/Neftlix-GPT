@@ -34,6 +34,13 @@
 - [x] Designed Custom Hooks (useTopRatedMovies, usePopularMovies, useUpcomingMovies) and updated redux Store
 - [x] Subscribe to store and rendered Movie Lists with Movie Cards and Title, TailwindCSS for UI
 
+- [x] Access GPT Search Page via Link ("/gpt") on Browse Page Header
+- [x] Create a seprate slice in store for gpt page
+- [x] Netflix GPT Search Page with search bar
+- [x] Abstracted hard-coded strings (page bg url) into constants.js
+- [x] (BONUS) Build Multi-Lang Feature into GPT Page
+- [] Integrate GPT API to recommend movies based on user prompt.
+
 ## Requirements Clarification
 
 ### Features

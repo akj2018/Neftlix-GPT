@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 
-const useAuthStateChange = () => {
+const useAuthStateChange = (protectedPageRoute) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const useAuthStateChange = () => {
         // User signed in
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
-        navigate("/browse");
+        navigate(protectedPageRoute);
       } else {
         // User signed out
         dispatch(removeUser());

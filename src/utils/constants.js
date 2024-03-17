@@ -31,3 +31,13 @@ export const API_GET_OPTIONS = {
 };
 
 export const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+export const GPT_SEARCH_PAGE_BG_URL =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/9d3533b2-0e2b-40b2-95e0-ecd7979cc88b/1c01ae52-0a90-41c5-a3ab-2736447a92ed/US-en-20240311-popsignuptwoweeks-perspective_alpha_website_large.jpg";
+
+export const SUPPORTED_LANGUAGES = [
+  { name: "English", id: "english" },
+  { name: "Español", id: "spanish" },
+  { name: "हिंदी", id: "hindi" },
+  { name: "中国人", id: "chinese" },
+];

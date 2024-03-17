@@ -21,7 +21,7 @@ const BrowsePage = () => {
   useUpcomingMovies();
 
   // Track changes in user auth state, prevent routes from unsafe access
-  useAuthStateChange();
+  useAuthStateChange("/browse");
 
   return (
     <div className="bg-black overflow-y-auto min-h-[120vh]">
