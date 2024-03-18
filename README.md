@@ -39,7 +39,15 @@
 - [x] Netflix GPT Search Page with search bar
 - [x] Abstracted hard-coded strings (page bg url) into constants.js
 - [x] (BONUS) Build Multi-Lang Feature into GPT Page
-- [] Integrate GPT API to recommend movies based on user prompt.
+- [x] Integrate GPT API to recommend movies based on user prompt.
+- [x] Fetch the data using the openai package and api key and diplayed
+- [x] Handled error cases for no results, invalid input, no input in GPT search bar
+- [x] Modified GPT slice to contain data for fetched moviesList and moviesInfo
+- [x] Bugfix issue : Allow openai to make calls in a browser (client-side) environment
+- [x] Use .env to securely store the api keys (TMBD & Openai)
+- [x] Memoization in custom hooks to avoid redundant network calls if store is initilaized
+- [] Shimmer UI for gpt page search results
+- [] Making app mobile responsive
 
 ## Requirements Clarification
 

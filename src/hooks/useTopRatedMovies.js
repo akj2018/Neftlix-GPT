@@ -1,13 +1,17 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_GET_OPTIONS, TOP_RATED_MOVIES_URL } from "../utils/constants";
 import { addTopRatedMovies } from "../utils/moviesSlice";
 
 const useTopRatedMovies = () => {
   const dispatch = useDispatch();
+  const topRatedMovies = useSelector((state) => state.movies.topRatedMovies);
 
   useEffect(() => {
-    getTopRatedMovies().catch((error) => console.log(error));
+    // Call only if topRatedMovies is null in the store
+    if (!topRatedMovies) {
+      getTopRatedMovies().catch((error) => console.log(error));
+    }
   }, []);
 
   const getTopRatedMovies = async () => {

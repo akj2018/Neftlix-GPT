@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { API_GET_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
+import { addTrailerVideo } from "../utils/moviesSlice";
 
 const useMovieTrailer = (movieId) => {
   const [trailer, setTrailer] = useState(null);
@@ -19,7 +20,7 @@ const useMovieTrailer = (movieId) => {
     );
     const trailer =
       availTrailers.length === 0 ? json.results[0] : availTrailers[0];
-    dispatch(trailer);
+    dispatch(addTrailerVideo(trailer));
     setTrailer(trailer);
   }, [movieId]);
 

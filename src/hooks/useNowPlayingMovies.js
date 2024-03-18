@@ -1,13 +1,19 @@
 import { useEffect } from "react";
 import { NOW_PLAYING_MOVIES_URL, API_GET_OPTIONS } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
+  const nowPlayingMovies = useSelector(
+    (state) => state.movies.nowPlayingMovies
+  );
 
   useEffect(() => {
-    getNowPlayingMovies().catch((error) => console.log(error));
+    // call if nowPlayingMovies is null in the store
+    if (!nowPlayingMovies) {
+      getNowPlayingMovies().catch((error) => console.log(error));
+    }
   }, []);
 
   const getNowPlayingMovies = async () => {

@@ -63,20 +63,32 @@ var settings = {
 
 const MovieList = ({ title, listData }) => {
   if (!listData) return null;
+
   return (
     <div className="flex flex-col py-5">
       <p className="text-[0.8rem] font-semibold text-white lg:text-[1.3rem]">
         {title}
       </p>
       <div className="px-12 pt-4">
-        <Slider {...settings}>
-          {listData.map((movieItem) => {
-            const { id, title, poster_path } = movieItem;
-            return (
-              <MovieCard key={id} imgFilePath={poster_path} title={title} />
-            );
-          })}
-        </Slider>
+        {listData.length >= 3 ? (
+          <Slider {...settings}>
+            {listData.map((movieItem) => {
+              const { id, title, poster_path } = movieItem;
+              return (
+                <MovieCard key={id} imgFilePath={poster_path} title={title} />
+              );
+            })}
+          </Slider>
+        ) : (
+          <div className="w-full lg:h-[18rem]">
+            {listData.map((movieItem) => {
+              const { id, title, poster_path } = movieItem;
+              return (
+                <MovieCard key={id} imgFilePath={poster_path} title={title} />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
