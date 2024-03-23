@@ -4,7 +4,7 @@
 
 ### Overview
 
-Netflix GPT is a web application that leverages the power of artificial intelligence and modern web technologies to enhance the user experience of browsing and discovering movies. It combines the functionality of a streaming service with the intelligence of OpenAI's GPT model to provide personalized movie recommendations based on user prompts.
+Netflix GPT utilizes AI and modern web tech to improve movie browsing. It merges streaming features with OpenAI's GPT model for personalized recommendations. Key tasks include integrating Firebase for authentication, TMDB API for data fetching, and Docker for deployment. The app is responsive, leveraging React and TailwindCSS, and deployed on Google Cloud Run for scalability.
 
 ## Key Features:
 
