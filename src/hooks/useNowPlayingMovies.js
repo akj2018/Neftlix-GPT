@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { NOW_PLAYING_MOVIES_URL, API_GET_OPTIONS } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
@@ -17,8 +17,12 @@ const useNowPlayingMovies = () => {
   }, []);
 
   const getNowPlayingMovies = async () => {
-    const response = await fetch(NOW_PLAYING_MOVIES_URL, API_GET_OPTIONS);
-    const json = await response.json();
+    const requestUrl = `${process.env.REACT_APP_BACKEND_URL}/api/getNowPlayingMovies`;
+    console.log(`Requesting URL: ${requestUrl}`); // Debugging line
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/getNowPlayingMovies`
+    );
+    const json = response.data;
     dispatch(addNowPlayingMovies(json?.results));
   };
 };

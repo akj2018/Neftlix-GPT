@@ -1,24 +1,37 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import axios from "axios";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCHA5jC7XiQf9lCyQaQxasMMUsSYZMXPpU",
-  authDomain: "netflixgpt-d2ba6.firebaseapp.com",
-  projectId: "netflixgpt-d2ba6",
-  storageBucket: "netflixgpt-d2ba6.appspot.com",
-  messagingSenderId: "201464968625",
-  appId: "1:201464968625:web:7456cb52908100d1b73990",
-  measurementId: "G-CGG1NFY3D7",
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const auth = getAuth();
+// Variable to store the auth instance
+let auth = null;
+
+// call initializeFirebase during the initialization phase of your application
+export const initializeFirebase = async () => {
+  // Check if Firebase apps have already been initialized
+  if (!getApps().length) {
+    // Fetch the Firebase config only if Firebase hasn't been initialized
+    const configUrl = `${process.env.REACT_APP_BACKEND_URL}/api/getFirebaseConfig`;
+
+    const response = await axios.get(configUrl);
+
+    const firebaseConfig = response.data;
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize and get Firebase services only if they haven't been initialized
+    if (!auth) {
+      getAnalytics(app); // Initialize Firebase Analytics
+      auth = getAuth(app); // Initialize and store Firebase Auth instance
+    }
+  }
+
+  return auth;
+};

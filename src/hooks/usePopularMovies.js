@@ -1,15 +1,17 @@
 import { useEffect } from "react";
-import { API_GET_OPTIONS, POPULAR_MOVIES_URL } from "../utils/constants";
 import { addPopularMovies } from "../utils/moviesSlice";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const usePopularMovies = () => {
   const dispatch = useDispatch();
   const popularMovies = useSelector((state) => state.movies.popularMovies);
 
   const getPopularMovies = async () => {
-    const response = await fetch(POPULAR_MOVIES_URL, API_GET_OPTIONS);
-    const json = await response.json();
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/getPopularMovies`
+    );
+    const json = response.data;
     dispatch(addPopularMovies(json?.results));
   };
 

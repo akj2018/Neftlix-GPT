@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 const cors = require("cors");
 const { OpenAI } = require("openai");
 require("dotenv").config();
@@ -6,15 +7,14 @@ require("dotenv").config();
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Replace 'your-app-domain.com' with actual domain for React app
+  origin: "*", // Replace 'your-app-domain.com' with actual domain for React app
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 const TMBD_API_GET_OPTIONS = {
-  method: "GET",
   headers: {
-    accept: "application/json",
-    Authorization: "Bearer " + process.env.REACT_APP_TMDB_READ_ACCESS_TOKEN,
+    Accept: "application/json",
+    Authorization: `Bearer ${process.env.REACT_APP_TMDB_READ_ACCESS_TOKEN}`,
   },
 };
 
@@ -27,6 +27,9 @@ const GPT_PROMPT_TEMPLATE = (query) =>
   `Act as a Movie Recommendation system and suggest latest movies for the following query on Netflix, "${query}".Generate only the names of 5 most popular movies in a comma sperated format specified in the example. Example format : Gadar, Sholay, Don, Golmaal, Koi Mil Gaya. If no movies are found or prompt is invalid, strictly return "none".`;
 
 app.use(cors(corsOptions));
+
+// Serve the files as static in build directory
+app.use(express.static("netflix-gpt/build"));
 
 app.get("/", (req, res) => {
   res.json({ name: "Akshay Jain" });
@@ -51,8 +54,11 @@ app.get("/api/getNowPlayingMovies", async (req, res) => {
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
   try {
-    const response = await fetch(NOW_PLAYING_MOVIES_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(
+      NOW_PLAYING_MOVIES_URL,
+      TMBD_API_GET_OPTIONS
+    );
+    const data = response.data; // With axios, the JSON response is automatically parsed
     res.json(data);
   } catch (error) {
     console.error("Failed to now playing movies:", error);
@@ -65,8 +71,8 @@ app.get("/api/getPopularMovies", async (req, res) => {
     "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
 
   try {
-    const response = await fetch(POPULAR_MOVIES_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(POPULAR_MOVIES_URL, TMBD_API_GET_OPTIONS);
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error("Failed to fetch popular movies:", error);
@@ -79,8 +85,11 @@ app.get("/api/getTopRatedMovies", async (req, res) => {
     "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 
   try {
-    const response = await fetch(TOP_RATED_MOVIES_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(
+      TOP_RATED_MOVIES_URL,
+      TMBD_API_GET_OPTIONS
+    );
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error("Failed to fetch top rated movies:", error);
@@ -93,8 +102,8 @@ app.get("/api/getUpcomingMovies", async (req, res) => {
     "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
 
   try {
-    const response = await fetch(UPCOMING_MOVIES_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(UPCOMING_MOVIES_URL, TMBD_API_GET_OPTIONS);
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error("Failed to fetch upcoming movies:", error);
@@ -112,8 +121,8 @@ app.get("/api/getMovieVideos", async (req, res) => {
 
   const MOVIE_VIDEO_URL = `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;
   try {
-    const response = await fetch(MOVIE_VIDEO_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(MOVIE_VIDEO_URL, TMBD_API_GET_OPTIONS);
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error("Failed to fetch movie videos:", error);
@@ -131,8 +140,8 @@ app.get("/api/getMovieInfo", async (req, res) => {
   const MOVIE_SEARCH_URL = `https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US&page=1`;
 
   try {
-    const response = await fetch(MOVIE_SEARCH_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(MOVIE_SEARCH_URL, TMBD_API_GET_OPTIONS);
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error("Failed to fetch movie info:", error);
@@ -150,8 +159,8 @@ app.get("/api/getMovieInfo", async (req, res) => {
   const MOVIE_SEARCH_URL = `https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US&page=1`;
 
   try {
-    const response = await fetch(MOVIE_SEARCH_URL, TMBD_API_GET_OPTIONS);
-    const data = await response.json();
+    const response = await axios.get(MOVIE_SEARCH_URL, TMBD_API_GET_OPTIONS);
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error("Failed to fetch movie info.", error);

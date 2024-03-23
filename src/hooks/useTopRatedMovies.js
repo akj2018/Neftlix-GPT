@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { API_GET_OPTIONS, TOP_RATED_MOVIES_URL } from "../utils/constants";
 import { addTopRatedMovies } from "../utils/moviesSlice";
+import axios from "axios";
 
 const useTopRatedMovies = () => {
   const dispatch = useDispatch();
@@ -15,8 +15,10 @@ const useTopRatedMovies = () => {
   }, []);
 
   const getTopRatedMovies = async () => {
-    const response = await fetch(TOP_RATED_MOVIES_URL, API_GET_OPTIONS);
-    const json = await response.json();
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/getTopRatedMovies`
+    );
+    const json = response.data;
     dispatch(addTopRatedMovies(json.results));
   };
 };

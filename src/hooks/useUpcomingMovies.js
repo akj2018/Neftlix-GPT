@@ -1,15 +1,17 @@
 import { useEffect } from "react";
-import { API_GET_OPTIONS, UPCOMING_MOVIES_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addUpcomingMovies } from "../utils/moviesSlice";
+import axios from "axios";
 
 const useUpcomingMovies = () => {
   const dispatch = useDispatch();
   const upcomingMovies = useSelector((state) => state.movies.upcomingMovies);
 
   const getUpcomingMovies = async () => {
-    const response = await fetch(UPCOMING_MOVIES_URL, API_GET_OPTIONS);
-    const json = await response.json();
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/getUpcomingMovies`
+    );
+    const json = response.data;
     dispatch(addUpcomingMovies(json.results));
   };
 

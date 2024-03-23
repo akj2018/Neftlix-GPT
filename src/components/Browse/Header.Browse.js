@@ -2,8 +2,7 @@ import { MdNotificationsNone } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "../../utils/firebase";
+import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,6 +22,7 @@ const HeaderBrowse = () => {
   const navigate = useNavigate();
   const photoURL = useSelector((state) => state?.user?.photoURL);
   const gptSearchStatus = useSelector((state) => state.gpt.gptSearchStatus);
+  const auth = getAuth();
 
   const navMenu = [
     { name: "Home", index: 1 },
@@ -112,14 +112,16 @@ const HeaderBrowse = () => {
               </span>
             )
           )}
+        </div>
+
+        <div className="justify-self-end flex items-center gap-x-4 sm:gap-x-5">
           <Link to={gptSearchStatus ? "/browse" : "/gpt"}>
             <GlowButton
               btnText={gptSearchStatus ? "Browse" : "GPT Search"}
               onClick={gptBtnHandler}
             />
           </Link>
-        </div>
-        <div className="justify-self-end flex items-center gap-x-4 sm:gap-x-5">
+
           {gptSearchStatus && (
             <select
               onChange={langChangeHandler}
@@ -139,22 +141,24 @@ const HeaderBrowse = () => {
             </select>
           )}
 
-          <IoSearch className="text-white" size={"1.75rem"} />
-          <MdNotificationsNone className="text-white" size={"1.75rem"} />
+          <IoSearch className="text-white text-[1.45rem] hidden md:block md:text-[1.5rem] lg:text-[1.75rem]" />
+          <MdNotificationsNone className="text-white text-[1.45rem]  hidden md:block md:text-[1.5rem] lg:text-[1.75rem]" />
+          <button
+            onClick={signOutUser}
+            className="rounded-full font-semibold text-[0.6rem] h-fit px-3 py-[0.3rem] md:max-lg:text-[0.7rem] md:max-lg:px-[1rem] md:max-lg:py-[0.5rem] lg:text-[0.9rem] lg:px-5 border-2 border-red-700 text-white md:hidden"
+          >
+            Sign Out
+          </button>
           <div className="group flex items-center gap-x-1 relative">
             <img
               className="rounded-md cursor-pointer w-8 sm:w-10 lg:w-9"
               alt="profile-icon"
-              src={
-                photoURL === null || photoURL === undefined
-                  ? USER_ICON_URL
-                  : photoURL
-              }
+              src={USER_ICON_URL}
             />
             <span className="cursor-pointer">
-              <FaCaretDown className="text-white hidden sm:block group-hover:rotate-180 transition duration-500" />
+              <FaCaretDown className="text-white hidden md:block group-hover:rotate-180 transition duration-500" />
             </span>
-            <div className="opacity-0 sm:group-hover:opacity-100 flex flex-col absolute top-14 right-0 w-[225px] bg-[#000000ab] border-[1px] border-neutral-700 transition duration-300">
+            <div className="opacity-0 md:group-hover:opacity-100 flex flex-col absolute top-14 right-0 w-[225px] bg-[#000000ab] border-[1px] border-neutral-700 transition duration-300">
               <div className="border-b-[1px] text-sm w-full text-white border-neutral-700 flex flex-col gap-y-4 p-4">
                 <p className="hover:underline cursor-pointer">
                   Manage Profiles

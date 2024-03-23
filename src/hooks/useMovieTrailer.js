@@ -1,23 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
-import { API_GET_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
+import axios from "axios";
 
 const useMovieTrailer = (movieId) => {
   const [trailer, setTrailer] = useState(null);
   const dispatch = useDispatch();
 
   const getMovieTrailer = useCallback(async () => {
+    const requestUrl = `${process.env.REACT_APP_BACKEND_URL}/api/getMovieVideos?movieId=${movieId}`;
     // Fetch the Now Playing
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-      API_GET_OPTIONS
-    );
+    const response = await axios.get(requestUrl);
+    const json = response.data;
 
-    const json = await response.json();
+    // Filter videos which are type "Trailer"
     const availTrailers = json.results.filter(
       (video) => video.type === "Trailer"
     );
+
+    // Decide which video to serve as trailer
     const trailer =
       availTrailers.length === 0 ? json.results[0] : availTrailers[0];
     dispatch(addTrailerVideo(trailer));

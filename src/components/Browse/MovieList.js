@@ -57,6 +57,47 @@ var settings = {
   speed: 500,
   slidesToShow: 7,
   slidesToScroll: 5,
+  responsive: [
+    {
+      breakpoint: 1260,
+      settings: {
+        slidesToShow: 6,
+        slidesToScroll: 6,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 425,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      },
+    },
+  ],
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
 };

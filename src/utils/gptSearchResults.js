@@ -1,13 +1,9 @@
-import openai from "./openai";
-import { GPT_PROMPT_TEMPLATE } from "./constants";
-
 async function getSearchResults(query) {
-  const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: GPT_PROMPT_TEMPLATE(query) }],
-    model: "gpt-3.5-turbo",
-  });
-
-  return chatCompletion;
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URL}/api/getOpenAi?query=${query}`
+  );
+  const data = await response.json();
+  return data;
 }
 
 export default getSearchResults;

@@ -14,7 +14,7 @@ const MainContainer = () => {
 
   // Select random movie to play in main container background with Title + Overview
   const randomMovieIndex = Math.floor(Math.random() * nowPlayingMovies.length);
-  const backgroundMovie = nowPlayingMovies[randomMovieIndex];
+  const backgroundMovie = nowPlayingMovies[0];
   const { id, title, overview } = backgroundMovie;
 
   return (

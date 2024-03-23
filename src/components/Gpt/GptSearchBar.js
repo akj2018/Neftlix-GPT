@@ -67,7 +67,7 @@ const GptSearchBar = () => {
     );
   };
 
-  console.log(moviesInfoList);
+  // console.log(moviesInfoList);
 
   return (
     <div className="w-full sm:w-[60%]">
@@ -90,7 +90,7 @@ const GptSearchBar = () => {
         <button
           onClick={searchBtnHandler}
           type="submit"
-          className="bg-[rgb(193,17,17)] hover:bg-[rgb(170,15,15)] py-1 w-[20%] brightness-105 text-white rounded-[4px] text-[0.75rem] tracking-wide md:text-base md:w-[15%]"
+          className="bg-[rgb(193,17,17)] hover:bg-[rgb(170,15,15)] py-2 w-[20%] brightness-105 text-white rounded-[4px] text-[0.75rem] tracking-wide md:text-base md:w-[15%]"
         >
           {lang[pageLang].searchBtnText}
         </button>

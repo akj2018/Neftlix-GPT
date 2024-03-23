@@ -46,8 +46,11 @@
 - [x] Bugfix issue : Allow openai to make calls in a browser (client-side) environment
 - [x] Use .env to securely store the api keys (TMBD & Openai)
 - [x] Memoization in custom hooks to avoid redundant network calls if store is initilaized
-- [] Shimmer UI for gpt page search results
-- [] Making app mobile responsive
+- [x] Integrated backend vai Express.js to securely manange API keys
+- [x] Making app mobile responsive
+
+- [x] Containerized front-end and back-end via Docker
+- [x] Deployed the containers on Google Cloud Run seprately
 
 ## Requirements Clarification
 

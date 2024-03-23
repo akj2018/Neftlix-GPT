@@ -48,7 +48,7 @@ const GlowButton = ({ btnText, onClick }) => {
 
   return (
     <button
-      className="glow-button md:max-lg:text-[0.7rem] md:max-lg:px-[1rem] md:max-lg:py-[0.5rem] md:h-full"
+      className="font-semibold glow-button text-[0.6rem] h-fit px-3 py-[0.3rem]  md:max-lg:text-[0.7rem] md:max-lg:px-[1rem] md:max-lg:py-[0.5rem] lg:text-[0.9rem] lg:px-5 md:py-2"
       onClick={onClick}
       onPointerMove={onMove}
       ref={buttonRef}

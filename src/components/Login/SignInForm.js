@@ -2,17 +2,25 @@ import { useRef, useState } from "react";
 import emailValidate from "../../utils/emailValidate";
 import passwordValidate from "../../utils/passwordValidate";
 import fullnameValidate from "../../utils/fullnameValidate";
-import { auth } from "../../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "@firebase/auth";
 import { useDispatch } from "react-redux";
+import { getAuth } from "firebase/auth";
 import { addUser } from "../../utils/userSlice";
+import { FaGoogle } from "react-icons/fa";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+} from "firebase/auth";
+import { isMobile } from "react-device-detect";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const auth = getAuth();
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailValidMsg, setEmailValidMsg] = useState(null);
@@ -83,7 +91,7 @@ const SignInForm = () => {
         password.current.value
       )
         .then((userCredential) => {
-          const user = userCredential.user;
+          // const user = userCredential.user;
 
           updateProfile(auth.currentUser, {
             displayName: fullName.current.value,
@@ -118,7 +126,7 @@ const SignInForm = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
+          // const user = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -132,8 +140,30 @@ const SignInForm = () => {
     }
   };
 
+  const googleAuthHandler = async () => {
+    const provider = await new GoogleAuthProvider();
+    auth.useDeviceLanguage();
+    if (isMobile) {
+      signInWithRedirect(auth, provider);
+    } else {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          // const credential = GoogleAuthProvider.credentialFromResult(result);
+          // const token = credential.accessToken;
+          // The signed-in user info.
+          // const user = result.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setEmailValidMsg(errorCode + " " + errorMessage);
+        });
+    }
+  };
+
   return (
-    <div className="mx-auto flex flex-col md:h-screen md:w-3/5 lg:max-w-[450px] ">
+    <div className="mx-auto flex flex-col md:h-min md:w-3/5 lg:max-w-[450px] ">
       <div className="body border-b-[1px] border-neutral-500 md:border-none min-h-[550px] pt-2 pb-8 sm:pb-0 px-[5%] md:bg-[#000000c0] md:px-[15%] md:pt-[15%] md:pb-[5%] lg:pb-[5rem] rounded-[4px] mb-10">
         <form
           onSubmit={(e) => e.preventDefault()}
@@ -169,7 +199,7 @@ const SignInForm = () => {
           <p className="text-[#e87c03] text-sm  mb-8">{passwordValidMsg}</p>
           <button
             onClick={btnHandler}
-            className="w-full text-center py-3 text-white font-semibold bg-[#e50914] rounded-[4px] tracking-wide my-1 mb-3 "
+            className="w-full text-center py-3 text-white font-semibold bg-[#e50914] rounded-[4px] tracking-wide my-1 mb-3 hover:bg-[rgb(180,7,16)]"
           >
             Sign In
           </button>
@@ -179,6 +209,18 @@ const SignInForm = () => {
               <p className="inline-block">Remember Me</p>
             </div>
             <p>Need help ?</p>
+          </div>
+
+          <div className="mt-7 mb-3">
+            <button
+              onClick={googleAuthHandler}
+              className="flex rounded-full w-full bg-[#e50914] p-2 py-3 md:py-2 items-center hover:bg-[rgb(180,7,16)]"
+            >
+              <FaGoogle className="text-white" />
+              <div className="text-white text-sm font-semibold text-center w-full">
+                SIGN IN WITH GOOGLE
+              </div>
+            </button>
           </div>
         </form>
         <div className="other my-5 sm:mt-[3rem] lg:mt-[1rem]">
