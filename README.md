@@ -1,56 +1,40 @@
 # Neftlix-GPT
 
-- [x] create-react-app
-- [x] Configured TailwindCSS
-- [x] Routing (Login, Browse, Home)
-- [x] Designing Login Page
-- [x] Header
-- [x] Sign In / Sign Up Form
-- [x] Footer
-- [x] Form Validation
-- [x] useRef Hook
-- [x] Firebase Setup
-- [x] Deploy on Firebase
-- [x] Create a user account on Firebase
-- [x] Perform user sign in and sign up with Firebase
-- [x] Setup Redux Store with userSlice
-- [x] Update userSlice with info on Sign In/Sign Up/Sign Out
-- [x] Redirect to /browse on Successful Sign In/Sign Up
-- [x] Implement Sign Out , Redirect to "/login" and update userSlice to null
-- [x] Update display name after sign up and update userSlice state
-- [x] Unsubsribed to onAuthStateChnaged callback
-- [x] Add hardcoded string values to contants.js
-- [x] BugFix : Redirect to "/login" if user not signed in, Redirect to "/browse" if user signed in and trying to go "/login"
+### Overview
 
-- [x] Designing Browse Page (main container + secondary container)
-- [x] Fetch API Key and API Read Access Token from [TMDB Movies API](https://developer.themoviedb.org/reference/intro/getting-started)
-- [x] Get nowPlayingMovies data using TMDB nowPlayingMovies API
-- [x] Converted nowPlayingMovies data into a custom hook
-- [x] Create moviesSlice and update store with movies data
-- [x] Fetch data for Trailer video and update store
-- [x] Embedded Youtube Video link and make it autoplay, mute, loop, minimal branding
-- [x] Build the Secondary Container (Movie Lists, Movie Cards)
-- [x] Add CDN URL Link to fetch images
-- [x] Designed Custom Hooks (useTopRatedMovies, usePopularMovies, useUpcomingMovies) and updated redux Store
-- [x] Subscribe to store and rendered Movie Lists with Movie Cards and Title, TailwindCSS for UI
+Netflix GPT is a web application that leverages the power of artificial intelligence and modern web technologies to enhance the user experience of browsing and discovering movies. It combines the functionality of a streaming service with the intelligence of OpenAI's GPT model to provide personalized movie recommendations based on user prompts.
 
-- [x] Access GPT Search Page via Link ("/gpt") on Browse Page Header
-- [x] Create a seprate slice in store for gpt page
-- [x] Netflix GPT Search Page with search bar
-- [x] Abstracted hard-coded strings (page bg url) into constants.js
-- [x] (BONUS) Build Multi-Lang Feature into GPT Page
-- [x] Integrate GPT API to recommend movies based on user prompt.
-- [x] Fetch the data using the openai package and api key and diplayed
-- [x] Handled error cases for no results, invalid input, no input in GPT search bar
-- [x] Modified GPT slice to contain data for fetched moviesList and moviesInfo
-- [x] Bugfix issue : Allow openai to make calls in a browser (client-side) environment
-- [x] Use .env to securely store the api keys (TMBD & Openai)
-- [x] Memoization in custom hooks to avoid redundant network calls if store is initilaized
-- [x] Integrated backend vai Express.js to securely manange API keys
-- [x] Making app mobile responsive
+## Key Features:
 
-- [x] Containerized front-end and back-end via Docker
-- [x] Deployed the containers on Google Cloud Run seprately
+### Authentication and User Management:
+- Implemented secure user authentication using Firebase.
+- Enabled seamless sign-up, sign-in, and sign-out functionalities.
+- Integrated Redux store for efficient user state management.
+
+### Browse and Search Functionality:
+- Designed intuitive browsing interfaces with React and TailwindCSS.
+- Utilized TMDB API to fetch comprehensive movie data.
+- Implemented custom hooks for efficient data management.
+- Developed a search page powered by OpenAI's GPT API for intelligent recommendations.
+- Handled error cases for a seamless user experience.
+
+### Responsive Design and Deployment:
+- Ensured mobile responsiveness for a consistent user experience.
+- Containerized frontend and backend components using Docker.
+- Deployed on Google Cloud Run for scalability and reliability.
+
+### Enhanced User Experience:
+- Integrated advanced features like autoplay, mute, loop, and minimal branding for trailer videos.
+- Implemented form validation and bug fixes for smooth interaction.
+- Incorporated multi-language support for broader accessibility.
+
+## Technologies Used:
+
+- Frontend Technologies: React, TailwindCSS, Redux
+- Database: Firebase Firestore 
+- Backend: Firebase Authentication, Express.js for managing API keys securely
+- APIs: TMDB API for movie data, OpenAI API for intelligent movie recommendations.
+- Deployment: Docker containers deployed on Google Cloud Run.
 
 ## Requirements Clarification
 
