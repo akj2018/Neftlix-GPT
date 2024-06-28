@@ -1,6 +1,6 @@
 # Neftlix-GPT 
 
-## Live Link on Google Cloud: [Netflix-GPT](https://netflix-gpt-frontend-4b3dgnveya-uc.a.run.app)
+## Live Link on Google Cloud: [Netflix-GPT](https://netflix-gpt-frontend-gm7e4buo5a-uc.a.run.app)
 
 ### Overview
 
