@@ -6,6 +6,11 @@
 
 Netflix GPT utilizes AI and modern web tech to improve movie browsing. It merges streaming features with OpenAI's GPT model for personalized recommendations. Key tasks include integrating Firebase for authentication, TMDB API for data fetching, and Docker for deployment. The app is responsive, leveraging React and TailwindCSS, and deployed on Google Cloud Run for scalability.
 
+### Demo Video
+https://github.com/akj2018/Neftlix-GPT/assets/43956935/8d1e18b5-c3c4-4859-a304-99d25f0c82ed
+
+
+
 ## Key Features:
 
 ### Authentication and User Management:
